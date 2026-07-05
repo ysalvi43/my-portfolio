@@ -262,8 +262,16 @@
   .cert{
     border:1px solid var(--panel-line);border-radius:8px;padding:18px;background:var(--panel);
     transition:border-color .15s ease, transform .15s ease;
+    display:flex;flex-direction:column;
   }
   .cert:hover{border-color:var(--amber);transform:translateY(-2px);}
+  .cert-verify{
+    margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11.5px;
+    color:var(--teal);display:inline-flex;align-items:center;gap:5px;
+    width:fit-content;transition:gap .15s ease;
+  }
+  .cert-verify:hover{gap:8px;}
+  .cert-verify svg{width:11px;height:11px;}
   .cert-name{font-size:14px;font-weight:500;}
   .cert-issuer{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted-2);margin-top:8px;}
   @media (max-width:720px){.cert-row{grid-template-columns:1fr 1fr;}}
@@ -484,18 +492,34 @@
       <div class="cert">
         <div class="cert-name">Fabric Data Engineer Associate</div>
         <div class="cert-issuer">MICROSOFT · JUN 2026</div>
+        <a class="cert-verify" href="https://learn.microsoft.com/en-gb/users/yashsalvi-5098/credentials/c74210e08abfa2f7" target="_blank" rel="noopener">
+          Verify
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </a>
       </div>
       <div class="cert">
         <div class="cert-name">Fabric Analytics Engineer Associate</div>
         <div class="cert-issuer">MICROSOFT · JUL 2024</div>
+        <a class="cert-verify" href="https://learn.microsoft.com/en-gb/users/yashsalvi-5098/credentials/8F2BF6AEA138ADDF" target="_blank" rel="noopener">
+          Verify
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </a>
       </div>
       <div class="cert">
         <div class="cert-name">Certified Scrum Product Owner</div>
         <div class="cert-issuer">SCRUM ALLIANCE · JUL 2025</div>
+        <a class="cert-verify" href="https://bcert.me/suydprlgb" target="_blank" rel="noopener">
+          Verify
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </a>
       </div>
       <div class="cert">
         <div class="cert-name">Tableau Desktop Specialist</div>
         <div class="cert-issuer">TABLEAU · APR 2024</div>
+        <a class="cert-verify" href="https://www.credly.com/badges/b3c04408-380e-40df-b31d-37c4d4d06728" target="_blank" rel="noopener">
+          Verify
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </a>
       </div>
     </div>
   </section>
