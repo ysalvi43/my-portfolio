@@ -1,205 +1,596 @@
-<!DOCTYPE HTML>
-<!--
-    Prologue by HTML5 UP
-    html5up.net | @ajlkn
-    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-    <head>
-        <title>Yash's Portfolio</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-    </head>
-    <body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yash Salvi — Business Intelligence Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F1620;
+    --panel:#141D28;
+    --panel-line:#233042;
+    --teal:#4FD1C5;
+    --amber:#E8A94C;
+    --text:#EDEFF2;
+    --muted:#8A97A8;
+    --muted-2:#5E6B7C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      linear-gradient(rgba(79,209,197,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,209,197,0.035) 1px, transparent 1px),
+      var(--ink);
+    background-size:36px 36px, 36px 36px, 100%;
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  body::before{
+    content:"";
+    position:fixed;top:0;left:0;right:0;height:460px;
+    background:radial-gradient(ellipse 60% 100% at 50% 0%, rgba(79,209,197,0.09), transparent 70%);
+    pointer-events:none;z-index:0;
+  }
+  ::selection{background:var(--teal);color:var(--ink);}
 
-        <!-- Header -->
-        <div id="header">
-            <!-- Logo -->
-            <div id="logo">
-                <span class="image avatar48"><img src="images/avatar.jpg" alt="Yash Salvi" /></span>
-                <h1>Yash Salvi</h1>
-                <p>Business Intelligence Engineer</p>
-            </div>
+  a{color:inherit;text-decoration:none;}
 
-            <!-- Navigation -->
-            <nav id="nav">
-                <ul>
-                    <li><a href="#top" id="top-link"><span class="icon solid fa-home">About Me</span></a></li>
-                    <li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a></li>
-                    <li><a href="#skills" id="skills-link"><span class="icon solid fa-cog">Skills</span></a></li>
-                    <li><a href="#experience" id="experience-link"><span class="icon solid fa-briefcase">Experience</span></a></li>
-                    <li><a href="#resume" id="resume-link"><span class="icon solid fa-file">Resume</span></a></li>
-                    <li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a></li>
-                </ul>
-            </nav>
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px;position:relative;z-index:1;}
 
-            <!-- Social Icons -->
-            <div class="bottom">
-                <ul class="icons">
-                    <li><a href="https://linkedin.com/in/yourprofile" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-                    <li><a href="https://github.com/yourprofile" class="icon brands fa-github"><span class="label">Github</span></a></li>
-                    <li><a href="mailto:youremail@example.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-                </ul>
-            </div>
-        </div>
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .display{font-family:'Space Grotesk',sans-serif;}
 
-        <!-- Main Content -->
-        <div id="main">
-            <!-- Intro -->
-            <section id="top" class="one dark cover">
-                <div class="container">
-                    <header>
-                        <h2 class="alt">Hi! I'm <strong>Yash Salvi</strong>, a <strong>Business Intelligence Engineer</strong>.</h2>
-                        <p>I specialize in turning complex data into actionable insights to drive business decisions.<br />
-                        Let's build something amazing together!</p>
-                    </header>
-                    <footer>
-                        <a href="#portfolio" class="button scrolly">View My Work</a>
-                    </footer>
-                </div>
-            </section>
+  /* ===== NAV ===== */
+  header.top{
+    position:sticky;top:0;z-index:50;
+    background:rgba(15,22,32,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--panel-line);
+  }
+  .navrow{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;max-width:1040px;margin:0 auto;
+  }
+  .brand{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;letter-spacing:0.02em;}
+  .brand .dot{color:var(--teal);}
+  nav.links{display:flex;gap:28px;font-size:14px;color:var(--muted);}
+  nav.links a{
+    position:relative;transition:color .15s ease;padding-bottom:3px;
+  }
+  nav.links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;
+    background:var(--teal);transform:scaleX(0);transform-origin:right;
+    transition:transform .25s ease;
+  }
+  nav.links a:hover{color:var(--text);}
+  nav.links a:hover::after{transform:scaleX(1);transform-origin:left;}
 
-            <!-- Portfolio -->
-            <section id="portfolio" class="two">
-                <div class="container">
-                    <header>
-                        <h2>Portfolio</h2>
-                        <p>Here are some of the projects I've worked on to solve real-world problems using data and analytics.</p>
-                    </header>
-                    <div class="row">
-                        <div class="col-4 col-12-mobile">
-                            <article class="item">
-                                <a href="#" class="image fit"><img src="images/pic02.jpg" alt="Project 1" /></a>
-                                <header>
-                                    <h3>Sales Dashboard</h3>
-                                    <p>Created an interactive dashboard to track sales performance using Power BI.</p>
-                                </header>
-                            </article>
-                        </div>
-                        <div class="col-4 col-12-mobile">
-                            <article class="item">
-                                <a href="#" class="image fit"><img src="images/pic03.jpg" alt="Project 2" /></a>
-                                <header>
-                                    <h3>Customer Segmentation</h3>
-                                    <p>Used clustering algorithms to segment customers for targeted marketing.</p>
-                                </header>
-                            </article>
-                        </div>
-                        <div class="col-4 col-12-mobile">
-                            <article class="item">
-                                <a href="#" class="image fit"><img src="images/pic04.jpg" alt="Project 3" /></a>
-                                <header>
-                                    <h3>Predictive Analytics</h3>
-                                    <p>Built a machine learning model to predict customer churn.</p>
-                                </header>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </section>
+  /* ===== HERO / DASHBOARD HEADER ===== */
+  .report-header{
+    padding:64px 0 0;
+  }
+  .report-label{
+    display:flex;align-items:center;gap:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--muted-2);margin-bottom:18px;
+  }
+  .report-label .pulse{
+    width:7px;height:7px;border-radius:50%;background:var(--teal);
+    box-shadow:0 0 0 0 rgba(79,209,197,0.6);
+    animation:pulse 2.2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(79,209,197,0.45);}
+    70%{box-shadow:0 0 0 8px rgba(79,209,197,0);}
+    100%{box-shadow:0 0 0 0 rgba(79,209,197,0);}
+  }
+  h1.name{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(38px,6vw,60px);
+    letter-spacing:-0.02em;
+    line-height:1.05;
+  }
+  .role-line{
+    margin-top:10px;
+    font-size:18px;
+    color:var(--muted);
+    max-width:640px;
+  }
+  .role-line strong{color:var(--text);font-weight:500;}
 
-            <!-- Skills -->
-            <section id="skills" class="three">
-                <div class="container">
-                    <header>
-                        <h2>Skills</h2>
-                        <p>Here are some of the tools and technologies I work with:</p>
-                    </header>
-                    <div class="skills-list">
-                        <ul>
-                            <li><strong>Data Analysis:</strong> Python, SQL, Excel, VBA</li>
-                            <li><strong>Data Visualization:</strong> Power BI, Tableau, Qlik Cloud</li>
-                            <li><strong>Data Warehousing:</strong> Snowflake, ETL, Data Modeling</li>
-                            <li><strong>Project Management:</strong> Jira, Agile Methodologies</li>
-                            <li><strong>Certifications:</strong> Tableau Desktop Specialist, Microsoft Certified: Fabric Analytics Engineer Associate</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+  .contact-row{
+    display:flex;flex-wrap:wrap;gap:18px;
+    margin-top:24px;font-size:13px;color:var(--muted);
+    font-family:'JetBrains Mono',monospace;
+  }
+  .contact-row a:hover{color:var(--teal);}
+  .contact-row span{color:var(--muted-2);}
 
-            <!-- Experience -->
-            <section id="experience" class="four">
-                <div class="container">
-                    <header>
-                        <h2>Experience</h2>
-                        <p>Here’s a snapshot of my professional journey:</p>
-                    </header>
-                    <div class="experience-list">
-                        <h3>Business Intelligence Engineer</h3>
-                        <p><strong>Exponentia AI</strong> | Jun 2024 – Present</p>
-                        <ul>
-                            <li>Revamped QS data model, reducing processing time from 18 hours to 8 hours.</li>
-                            <li>Supported Nprinting tasks and created custom reports, ensuring timely delivery.</li>
-                            <li>Implemented data validation and testing processes for HR, Operations, and Finance reports.</li>
-                        </ul>
+  /* KPI tile strip — the signature element */
+  .kpi-strip{
+    margin-top:48px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--panel-line);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .kpi{
+    padding:22px 20px;
+    background:var(--panel);
+    border-right:1px solid var(--panel-line);
+    position:relative;
+    transition:background .2s ease;
+  }
+  .kpi:last-child{border-right:none;}
+  .kpi:hover{background:#182330;}
+  .kpi-value{
+    font-family:'JetBrains Mono',monospace;
+    font-size:26px;font-weight:600;color:var(--teal);
+    letter-spacing:-0.01em;
+  }
+  .kpi-label{
+    margin-top:6px;font-size:11.5px;color:var(--muted);
+    text-transform:uppercase;letter-spacing:0.06em;
+  }
+  .kpi-bar{
+    margin-top:14px;height:3px;background:var(--panel-line);border-radius:2px;overflow:hidden;
+  }
+  .kpi-bar i{
+    display:block;height:100%;background:linear-gradient(90deg,var(--teal),#7FE3D9);
+    border-radius:2px;width:0;transition:width 1.1s cubic-bezier(.22,1,.36,1);
+  }
+  .kpi-strip.in-view .kpi-bar i{width:var(--target-width);}
 
-                        <h3>Business Intelligence Developer</h3>
-                        <p><strong>Crimson Interactive</strong> | Mar 2022 – May 2024</p>
-                        <ul>
-                            <li>Acted as SPOC for critical reports, enhancing KPIs and client relationships.</li>
-                            <li>Developed a client behavior and churn analysis dashboard for strategic decision-making.</li>
-                            <li>Collaborated with Software Engineers to extract and transform data from databases.</li>
-                        </ul>
+  @media (max-width:720px){
+    .kpi-strip{grid-template-columns:repeat(2,1fr);}
+    .kpi{border-bottom:1px solid var(--panel-line);}
+  }
 
-                        <h3>Data Analyst</h3>
-                        <p><strong>eClerx</strong> | Feb 2021 – Mar 2022</p>
-                        <ul>
-                            <li>Converted raw data into actionable insights using Qlik and Tableau.</li>
-                            <li>Established and tracked KPIs for functional projects.</li>
-                            <li>Streamlined data cleaning processes using Python and VBA.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+  /* ===== SECTIONS ===== */
+  section{padding:72px 0;border-top:1px solid var(--panel-line);}
+  .report-header{border-top:none;}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;margin-bottom:34px;
+  }
+  .section-tag{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted-2);
+    letter-spacing:0.08em;
+  }
+  h2.section-title{
+    font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:600;
+  }
 
-            <!-- Resume -->
-            <section id="resume" class="five">
-                <div class="container">
-                    <header>
-                        <h2>Download Resume</h2>
-                        <p>Feel free to download my resume for more details about my experience and skills.</p>
-                    </header>
-                    <a href="resume/Yash_Salvi_Resume.pdf" download class="button">Download Resume</a>
-                </div>
-            </section>
+  /* Summary */
+  .summary p{
+    font-size:16.5px;color:var(--muted);max-width:700px;
+  }
+  .summary strong{color:var(--text);font-weight:500;}
 
-            <!-- Contact -->
-            <!-- Contact -->
-<section id="contact" class="four">
-    <div class="container">
-        <header>
-            <h2>Contact</h2>
-            <p>Let's connect! Feel free to reach out for collaborations or opportunities.</p>
-        </header>
-        <form method="POST" action="https://formspree.io/f/mwpvgqab">
-            <div class="row">
-                <div class="col-6 col-12-mobile">
-                    <input type="text" name="name" placeholder="Name" required />
-                </div>
-                <div class="col-6 col-12-mobile">
-                    <input type="email" name="email" placeholder="Email" required />
-                </div>
-                <div class="col-12">
-                    <textarea name="message" placeholder="Message" required></textarea>
-                </div>
-                <div class="col-12">
-                    <input type="submit" value="Send Message" />
-                </div>
-            </div>
-        </form>
+  /* Experience — query-log style */
+  .job-list{position:relative;}
+  .job-list::before{
+    content:"";position:absolute;left:160px;top:8px;bottom:8px;width:1px;
+    background:var(--panel-line);
+  }
+  @media (max-width:640px){.job-list::before{display:none;}}
+  .job{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:28px;
+    padding:28px 0;
+    border-bottom:1px solid var(--panel-line);
+    position:relative;
+  }
+  .job:last-child{border-bottom:none;}
+  .job::after{
+    content:"";position:absolute;left:157px;top:32px;width:7px;height:7px;
+    border-radius:50%;background:var(--ink);border:2px solid var(--muted-2);
+  }
+  .job.job-current-entry::after{border-color:var(--teal);background:var(--teal);}
+  @media (max-width:640px){.job::after{display:none;}}
+  .job-period{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted-2);
+    padding-top:3px;
+  }
+  .job-current{color:var(--teal);}
+  .job-title{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;}
+  .job-company{color:var(--muted);font-size:14.5px;margin-top:2px;}
+  .job-bullets{margin-top:14px;list-style:none;}
+  .job-bullets li{
+    position:relative;padding-left:20px;margin-bottom:10px;
+    color:var(--muted);font-size:14.5px;
+  }
+  .job-bullets li::before{
+    content:"›";position:absolute;left:0;color:var(--teal);font-family:'JetBrains Mono',monospace;
+  }
+  .job-bullets li strong{color:var(--text);font-weight:500;}
+
+  @media (max-width:640px){
+    .job{grid-template-columns:1fr;gap:6px;}
+  }
+
+  /* Skills */
+  .skill-groups{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .skill-group-label{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted-2);
+    text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-size:13px;padding:6px 12px;border:1px solid var(--panel-line);
+    border-radius:6px;color:var(--muted);background:var(--panel);
+    transition:border-color .15s ease, color .15s ease, transform .15s ease;
+  }
+  .chip:hover{border-color:var(--teal);color:var(--text);transform:translateY(-1px);}
+  @media (max-width:640px){.skill-groups{grid-template-columns:1fr;}}
+
+  /* Projects */
+  .project-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .project-card{
+    border:1px solid var(--panel-line);border-radius:10px;padding:26px;
+    background:var(--panel);
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .project-card:hover{border-color:var(--teal);transform:translateY(-2px);}
+  .project-tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);
+    text-transform:uppercase;letter-spacing:0.06em;
+  }
+  .project-title{
+    font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;margin-top:10px;
+  }
+  .project-desc{color:var(--muted);font-size:14px;margin-top:8px;}
+  .project-stack{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;}
+  .project-stack span{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-2);
+    border:1px solid var(--panel-line);padding:3px 8px;border-radius:4px;
+  }
+  @media (max-width:640px){.project-grid{grid-template-columns:1fr;}}
+
+  /* Certifications */
+  .cert-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .cert{
+    border:1px solid var(--panel-line);border-radius:8px;padding:18px;background:var(--panel);
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .cert:hover{border-color:var(--amber);transform:translateY(-2px);}
+  .cert-name{font-size:14px;font-weight:500;}
+  .cert-issuer{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted-2);margin-top:8px;}
+  @media (max-width:720px){.cert-row{grid-template-columns:1fr 1fr;}}
+  @media (max-width:420px){.cert-row{grid-template-columns:1fr;}}
+
+  /* Education */
+  .edu-row{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;}
+  .edu-name{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;}
+  .edu-degree{color:var(--muted);font-size:14.5px;margin-top:4px;}
+  .edu-period{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted-2);}
+
+  /* Footer */
+  footer{
+    padding:48px 0 64px;border-top:1px solid var(--panel-line);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  }
+  footer .foot-note{font-size:13px;color:var(--muted-2);font-family:'JetBrains Mono',monospace;}
+  footer .foot-links{display:flex;gap:20px;font-size:14px;}
+  footer .foot-links a:hover{color:var(--teal);}
+
+  .reveal{
+    opacity:0;transform:translateY(18px);
+    transition:opacity .6s ease, transform .6s cubic-bezier(.22,1,.36,1);
+  }
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important;}
+    .reveal{opacity:1;transform:none;}
+  }
+
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:var(--ink);}
+  ::-webkit-scrollbar-thumb{background:var(--panel-line);border-radius:5px;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="navrow">
+    <div class="brand">Yash<span class="dot">.</span>Salvi</div>
+    <nav class="links">
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certifications</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="report-header">
+    <div class="report-label"><span class="pulse"></span> report_status: available_for_opportunities</div>
+    <h1 class="name">Yash Salvi</h1>
+    <p class="role-line">Business Intelligence Engineer building <strong>reliable, scalable reporting</strong> across Qlik Sense, Power BI, and Microsoft Fabric — currently deepening into <strong>data engineering</strong>.</p>
+    <div class="contact-row">
+      <a href="mailto:ysalvi43@gmail.com">ysalvi43@gmail.com</a>
+      <span>/</span>
+      <a href="tel:+919326581120">+91 93265 81120</a>
+      <span>/</span>
+      <span>Mumbai, IN</span>
     </div>
-</section>
 
-        
+    <div class="kpi-strip">
+      <div class="kpi">
+        <div class="kpi-value" data-count-to="5.0" data-suffix="">5.0</div>
+        <div class="kpi-label">Years in BI &amp; Analytics</div>
+        <div class="kpi-bar"><i style="--target-width:83%"></i></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-value" data-count-to="55" data-suffix="%">55%</div>
+        <div class="kpi-label">ETL Processing Time Cut</div>
+        <div class="kpi-bar"><i style="--target-width:55%"></i></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-value" data-count-to="10" data-suffix="M+">10M+</div>
+        <div class="kpi-label">Records, Near Real-Time</div>
+        <div class="kpi-bar"><i style="--target-width:90%"></i></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-value" data-count-to="4" data-suffix="">4</div>
+        <div class="kpi-label">Companies, 0 Reporting Gaps</div>
+        <div class="kpi-bar"><i style="--target-width:70%"></i></div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
-    </body>
+  <section class="summary">
+    <div class="section-head reveal">
+      <span class="section-tag mono">01</span>
+      <h2 class="section-title">Summary</h2>
+    </div>
+    <p>Business Intelligence Engineer with <strong>5 years of experience</strong> across SQL, ETL, data modeling, and BI reporting. Proficient in <strong>Qlik Sense, Power BI, Microsoft Fabric, Python, and Tableau</strong>, with a track record of building reporting systems that stay accurate and fast as data volume grows — currently expanding into PySpark and Databricks to move further upstream into data engineering.</p>
+  </section>
+
+  <section id="experience">
+    <div class="section-head reveal">
+      <span class="section-tag mono">02</span>
+      <h2 class="section-title">Experience</h2>
+    </div>
+
+    <div class="job-list">
+    <div class="job job-current-entry reveal">
+      <div class="job-period job-current">NOV 2025 — PRESENT</div>
+      <div>
+        <div class="job-title">Manager – Business Support</div>
+        <div class="job-company">DHL · Mumbai, IN</div>
+        <ul class="job-bullets">
+          <li>Led the <strong>migration of Qlik Sense reporting solutions to Microsoft Fabric and Power BI</strong>, modernizing the enterprise BI stack.</li>
+          <li>Owned the end-to-end BI report lifecycle — partnering with stakeholders on requirements, prioritization, development, testing, deployment, and production support.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job reveal">
+      <div class="job-period">JUN 2024 — OCT 2025</div>
+      <div>
+        <div class="job-title">Business Intelligence Engineer</div>
+        <div class="job-company">Exponentia AI · Mumbai, IN</div>
+        <ul class="job-bullets">
+          <li>Optimized Qlik Sense data models and SQL-based ETL workflows, <strong>cutting processing time by 55%</strong> for near real-time analysis of 10M+ records.</li>
+          <li>Architected a <strong>reusable 3-tier ETL framework</strong>, standardizing BI development and improving scalability and governance.</li>
+          <li>Delivered executive dashboards for Finance, HR, and Operations leadership, including a reporting solution adopted directly by the Managing Director.</li>
+          <li>Integrated Excel, PostgreSQL, and Databricks sources into unified reporting layers via scalable ETL pipelines.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job reveal">
+      <div class="job-period">MAR 2022 — MAY 2024</div>
+      <div>
+        <div class="job-title">Business Intelligence Developer</div>
+        <div class="job-company">Crimson Interactive · Mumbai, IN</div>
+        <ul class="job-bullets">
+          <li>Served as SPOC for business-critical BI reports, owning issue resolution, reliability, and compliance.</li>
+          <li>Designed Qlik Sense dashboards for <strong>client behaviour and churn analysis</strong>, surfacing retention trends for stakeholders.</li>
+          <li>Translated stakeholder requirements into scalable BI solutions, improving operational visibility.</li>
+          <li>Won the <strong>"Rising Star" award</strong> for outstanding project contributions.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job reveal">
+      <div class="job-period">MAR 2021 — MAR 2022</div>
+      <div>
+        <div class="job-title">Data Analyst</div>
+        <div class="job-company">eClerx · Navi Mumbai, IN</div>
+        <ul class="job-bullets">
+          <li>Built and maintained Qlik load scripts to extract, transform, and load data from multiple source systems.</li>
+          <li>Automated data cleansing with VBA, reducing manual effort and improving data quality.</li>
+        </ul>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head reveal">
+      <span class="section-tag mono">03</span>
+      <h2 class="section-title">Skills</h2>
+    </div>
+    <div class="skill-groups reveal">
+      <div>
+        <div class="skill-group-label">Languages &amp; Logic</div>
+        <div class="chips">
+          <span class="chip">SQL</span><span class="chip">Python</span><span class="chip">PySpark</span><span class="chip">DAX</span><span class="chip">VBA</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">BI &amp; Visualization</div>
+        <div class="chips">
+          <span class="chip">Power BI</span><span class="chip">Qlik Sense</span><span class="chip">Tableau</span><span class="chip">Microsoft Fabric</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Data Engineering</div>
+        <div class="chips">
+          <span class="chip">ETL</span><span class="chip">Data Modeling</span><span class="chip">Data Warehousing</span><span class="chip">PostgreSQL</span><span class="chip">Snowflake</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Delivery</div>
+        <div class="chips">
+          <span class="chip">Agile</span><span class="chip">Jira</span><span class="chip">Advanced Excel</span><span class="chip">Dashboard Development</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head reveal">
+      <span class="section-tag mono">04</span>
+      <h2 class="section-title">Personal Projects</h2>
+    </div>
+    <div class="project-grid">
+      <div class="project-card reveal">
+        <div class="project-tag">Swing Trading</div>
+        <div class="project-title">NSE Stock Screener</div>
+        <p class="project-desc">A Python screener that dynamically pulls the Nifty 500 list and ranks stocks using MACD crossover and Wilder RSI(14) filters, outputting ranked results to CSV for daily swing-trade review.</p>
+        <div class="project-stack"><span>Python</span><span>Pandas</span><span>yfinance</span></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-tag">Reporting</div>
+        <div class="project-title">Power BI KPI Dashboard</div>
+        <p class="project-desc">An industrial-projects-style KPI dashboard built with an emphasis on clear visual hierarchy and executive readability over DAX complexity, modeled on real operational reporting layouts.</p>
+        <div class="project-stack"><span>Power BI</span><span>DAX</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="section-head reveal">
+      <span class="section-tag mono">05</span>
+      <h2 class="section-title">Certifications</h2>
+    </div>
+    <div class="cert-row reveal">
+      <div class="cert">
+        <div class="cert-name">Fabric Data Engineer Associate</div>
+        <div class="cert-issuer">MICROSOFT · JUN 2026</div>
+      </div>
+      <div class="cert">
+        <div class="cert-name">Fabric Analytics Engineer Associate</div>
+        <div class="cert-issuer">MICROSOFT · JUL 2024</div>
+      </div>
+      <div class="cert">
+        <div class="cert-name">Certified Scrum Product Owner</div>
+        <div class="cert-issuer">SCRUM ALLIANCE · JUL 2025</div>
+      </div>
+      <div class="cert">
+        <div class="cert-name">Tableau Desktop Specialist</div>
+        <div class="cert-issuer">TABLEAU · APR 2024</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head reveal">
+      <span class="section-tag mono">06</span>
+      <h2 class="section-title">Education</h2>
+    </div>
+    <div class="edu-row reveal">
+      <div>
+        <div class="edu-name">Mumbai University</div>
+        <div class="edu-degree">Bachelor of Technology, Mechanical Engineering</div>
+      </div>
+      <div class="edu-period">JUN 2016 — OCT 2020</div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-note">// last updated 2026</div>
+    <div class="foot-links">
+      <a href="mailto:ysalvi43@gmail.com">Email</a>
+      <a href="tel:+919326581120">Phone</a>
+    </div>
+  </footer>
+
+</div>
+
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Generic reveal-on-scroll
+  var revealEls = document.querySelectorAll('.reveal');
+  var kpiStrip = document.querySelector('.kpi-strip');
+
+  if(reduceMotion){
+    revealEls.forEach(function(el){ el.classList.add('in-view'); });
+    if(kpiStrip) kpiStrip.classList.add('in-view');
+    document.querySelectorAll('.kpi-value[data-count-to]').forEach(function(el){
+      el.textContent = el.getAttribute('data-count-to') + el.getAttribute('data-suffix');
+    });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(function(el){ io.observe(el); });
+
+    // KPI strip: trigger bar fill + counter animation together
+    if(kpiStrip){
+      var kpiObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('in-view');
+            animateCounters(entry.target);
+            kpiObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      kpiObserver.observe(kpiStrip);
+    }
+  }
+
+  function animateCounters(scope){
+    var counters = scope.querySelectorAll('.kpi-value[data-count-to]');
+    counters.forEach(function(el){
+      var target = parseFloat(el.getAttribute('data-count-to'));
+      var suffix = el.getAttribute('data-suffix') || '';
+      var isDecimal = String(target).indexOf('.') !== -1;
+      var duration = 1100;
+      var startTime = null;
+
+      function step(ts){
+        if(!startTime) startTime = ts;
+        var progress = Math.min((ts - startTime) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        var current = target * eased;
+        el.textContent = (isDecimal ? current.toFixed(1) : Math.round(current)) + suffix;
+        if(progress < 1){
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = (isDecimal ? target.toFixed(1) : target) + suffix;
+        }
+      }
+      requestAnimationFrame(step);
+    });
+  }
+})();
+</script>
+</body>
 </html>
