@@ -72,6 +72,18 @@
   nav.links a:hover{color:var(--text);}
   nav.links a:hover::after{transform:scaleX(1);transform-origin:left;}
 
+  .nav-right{display:flex;align-items:center;gap:28px;}
+
+  .resume-btn{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:13px;font-weight:500;color:var(--ink);
+    background:var(--teal);padding:8px 14px;border-radius:6px;
+    transition:background .15s ease, transform .15s ease;
+    flex-shrink:0;
+  }
+  .resume-btn svg{width:13px;height:13px;}
+  .resume-btn:hover{background:#7FE3D9;transform:translateY(-1px);}
+
   /* ===== HERO / DASHBOARD HEADER ===== */
   .report-header{
     padding:64px 0 0;
@@ -103,7 +115,7 @@
     margin-top:10px;
     font-size:18px;
     color:var(--muted);
-    max-width:640px;
+    max-width:720px;
   }
   .role-line strong{color:var(--text);font-weight:500;}
 
@@ -156,6 +168,41 @@
     .kpi{border-bottom:1px solid var(--panel-line);}
   }
 
+  @media (max-width:640px){
+    .wrap{padding:0 20px;}
+    .navrow{padding:14px 20px;}
+    .brand{font-size:15px;}
+    nav.links{gap:16px;font-size:12.5px;}
+    .report-header{padding:36px 0 0;}
+    .report-label{font-size:10.5px;gap:8px;margin-bottom:14px;}
+    h1.name{font-size:34px;}
+    .role-line{font-size:15px;margin-top:8px;}
+    .contact-row{gap:10px 14px;margin-top:18px;font-size:12px;}
+    .kpi-strip{margin-top:32px;}
+    .kpi{padding:16px 14px;}
+    .kpi-value{font-size:21px;}
+  }
+
+  @media (max-width:480px){
+    .navrow{padding:14px 0 14px 20px;gap:12px;}
+    .nav-right{gap:14px;min-width:0;flex:1;}
+    nav.links{
+      overflow-x:auto;flex-wrap:nowrap;gap:16px;
+      padding-right:12px;min-width:0;
+      -ms-overflow-style:none;scrollbar-width:none;
+      mask-image:linear-gradient(90deg, #000 85%, transparent 100%);
+      -webkit-mask-image:linear-gradient(90deg, #000 85%, transparent 100%);
+    }
+    nav.links::-webkit-scrollbar{display:none;}
+    nav.links a{white-space:nowrap;flex:0 0 auto;}
+    .resume-btn{padding:8px 10px;margin-right:20px;}
+    .resume-btn span{display:none;}
+  }
+
+  @media (max-width:400px){
+    h1.name{font-size:29px;}
+  }
+
   /* ===== SECTIONS ===== */
   section{padding:72px 0;border-top:1px solid var(--panel-line);}
   .report-header{border-top:none;}
@@ -172,7 +219,7 @@
 
   /* Summary */
   .summary p{
-    font-size:16.5px;color:var(--muted);max-width:700px;
+    font-size:16.5px;color:var(--muted);max-width:760px;
   }
   .summary strong{color:var(--text);font-weight:500;}
 
@@ -214,6 +261,10 @@
     content:"›";position:absolute;left:0;color:var(--teal);font-family:'JetBrains Mono',monospace;
   }
   .job-bullets li strong{color:var(--text);font-weight:500;}
+  .job-context{
+    margin-top:12px;font-size:14.5px;color:var(--muted-2);
+    font-style:italic;max-width:600px;
+  }
 
   @media (max-width:640px){
     .job{grid-template-columns:1fr;gap:6px;}
@@ -230,8 +281,18 @@
     font-size:13px;padding:6px 12px;border:1px solid var(--panel-line);
     border-radius:6px;color:var(--muted);background:var(--panel);
     transition:border-color .15s ease, color .15s ease, transform .15s ease;
+    cursor:pointer;
   }
   .chip:hover{border-color:var(--teal);color:var(--text);transform:translateY(-1px);}
+
+  #about, .job, .project-card{scroll-margin-top:90px;}
+  @keyframes target-flash{
+    0%{border-color:var(--teal);box-shadow:0 0 0 3px rgba(79,209,197,0.15);}
+    100%{border-color:var(--panel-line);box-shadow:none;}
+  }
+  .project-card:target{animation:target-flash 1.8s ease-out;}
+  .job:target{animation:target-flash 1.8s ease-out;border-radius:8px;}
+  #about:target{animation:target-flash 1.8s ease-out;border-radius:8px;}
   @media (max-width:640px){.skill-groups{grid-template-columns:1fr;}}
 
   /* Projects */
@@ -313,12 +374,18 @@
 <header class="top">
   <div class="navrow">
     <div class="brand">Yash<span class="dot">.</span>Salvi</div>
-    <nav class="links">
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#certifications">Certifications</a>
-    </nav>
+    <div class="nav-right">
+      <nav class="links">
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+      </nav>
+      <a class="resume-btn" href="resume.pdf" download="Yash_Salvi_Resume.pdf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
+        <span>Resume</span>
+      </a>
+    </div>
   </div>
 </header>
 
@@ -360,12 +427,13 @@
     </div>
   </section>
 
-  <section class="summary">
+  <section class="summary" id="about">
     <div class="section-head reveal">
       <span class="section-tag mono">01</span>
-      <h2 class="section-title">Summary</h2>
+      <h2 class="section-title">About</h2>
     </div>
-    <p>Business Intelligence Engineer with <strong>5 years of experience</strong> across SQL, ETL, data modeling, and BI reporting. Proficient in <strong>Qlik Sense, Power BI, Microsoft Fabric, Python, and Tableau</strong>, with a track record of building reporting systems that stay accurate and fast as data volume grows — currently expanding into PySpark and Databricks to move further upstream into data engineering.</p>
+    <p>I build the layer between raw data and the decisions people actually make with it. Over five years — from writing my first Qlik load scripts at eClerx to now leading a reporting-stack migration to Microsoft Fabric at DHL — the job has stayed the same at its core: take something messy and disconnected, and turn it into a number someone can trust in seconds, not minutes.</p>
+    <p style="margin-top:16px;">My toolkit spans Qlik Sense, Power BI, Microsoft Fabric, Python, and Tableau. The more interesting work lately has been moving further upstream — deepening into PySpark and Databricks so I own not just how data gets reported, but how it gets built in the first place.</p>
   </section>
 
   <section id="experience">
@@ -375,54 +443,63 @@
     </div>
 
     <div class="job-list">
-    <div class="job job-current-entry reveal">
+    <div class="job job-current-entry reveal" id="job-dhl">
       <div class="job-period job-current">NOV 2025 — PRESENT</div>
       <div>
         <div class="job-title">Manager – Business Support</div>
         <div class="job-company">DHL · Mumbai, IN</div>
+        <p class="job-context">Stepping into this role meant inheriting a reporting environment that had grown up on Qlik Sense over years — and being trusted to carry it forward onto Microsoft's newer Fabric stack without disrupting the business along the way.</p>
         <ul class="job-bullets">
-          <li>Led the <strong>migration of Qlik Sense reporting solutions to Microsoft Fabric and Power BI</strong>, modernizing the enterprise BI stack.</li>
-          <li>Owned the end-to-end BI report lifecycle — partnering with stakeholders on requirements, prioritization, development, testing, deployment, and production support.</li>
+          <li>Leading the <strong>migration of Qlik Sense reporting solutions to Microsoft Fabric and Power BI</strong> — auditing existing Qlik applications, rebuilding the underlying data models for Fabric, and reconstructing the report layer in Power BI, all while keeping business users reporting without interruption.</li>
+          <li>Owning the end-to-end BI report lifecycle: partnering directly with business stakeholders to gather requirements, prioritizing the enhancement backlog, and overseeing development through testing, deployment, and ongoing production support.</li>
         </ul>
       </div>
     </div>
 
-    <div class="job reveal">
+    <div class="job reveal" id="job-exponentia">
       <div class="job-period">JUN 2024 — OCT 2025</div>
       <div>
         <div class="job-title">Business Intelligence Engineer</div>
         <div class="job-company">Exponentia AI · Mumbai, IN</div>
+        <p class="job-context">This role is where performance and reliability at scale became the core problem to solve — reporting pipelines that had to stay fast and accurate as record counts climbed into the millions.</p>
         <ul class="job-bullets">
-          <li>Optimized Qlik Sense data models and SQL-based ETL workflows, <strong>cutting processing time by 55%</strong> for near real-time analysis of 10M+ records.</li>
-          <li>Architected a <strong>reusable 3-tier ETL framework</strong>, standardizing BI development and improving scalability and governance.</li>
-          <li>Delivered executive dashboards for Finance, HR, and Operations leadership, including a reporting solution adopted directly by the Managing Director.</li>
-          <li>Integrated Excel, PostgreSQL, and Databricks sources into unified reporting layers via scalable ETL pipelines.</li>
+          <li>Optimized Qlik Sense data models and SQL-based ETL workflows — reworking load logic and tuning queries — to <strong>cut processing time by 55%</strong>, enabling near real-time analysis of 10M+ records while automated validation checks caught data issues before they ever reached a dashboard.</li>
+          <li>Architected a <strong>reusable 3-tier ETL framework</strong> separating ingestion, transformation, and presentation layers — standardizing how BI projects were built across the team and improving scalability, governance, and cross-project reusability.</li>
+          <li>Worked directly with Finance, HR, and Operations leadership to deliver executive dashboards, including a strategic reporting solution that was adopted by the Managing Director for day-to-day decision-making.</li>
+          <li>Built scalable ETL pipelines that unified Excel, PostgreSQL, and Databricks sources into a single reporting layer, closing the gap between disconnected data owners and giving stakeholders one consistent version of the numbers.</li>
         </ul>
       </div>
     </div>
 
-    <div class="job reveal">
+    <div class="job reveal" id="job-crimson">
       <div class="job-period">MAR 2022 — MAY 2024</div>
       <div>
         <div class="job-title">Business Intelligence Developer</div>
         <div class="job-company">Crimson Interactive · Mumbai, IN</div>
+        <p class="job-context">This was where BI work stopped being just a dashboard-building exercise. Regular, direct exposure to the business manager, product team, and PMO meant learning to translate priorities across very different stakeholders — not just build what was asked, but understand why it mattered to each of them.</p>
         <ul class="job-bullets">
-          <li>Served as SPOC for business-critical BI reports, owning issue resolution, reliability, and compliance.</li>
-          <li>Designed Qlik Sense dashboards for <strong>client behaviour and churn analysis</strong>, surfacing retention trends for stakeholders.</li>
-          <li>Translated stakeholder requirements into scalable BI solutions, improving operational visibility.</li>
-          <li>Won the <strong>"Rising Star" award</strong> for outstanding project contributions.</li>
+          <li>Served as the Single Point of Contact (SPOC) for critical reports, closely partnering with the business manager and PMO to monitor performance, sharpen KPIs, and build the kind of client trust that comes from consistent, compliant delivery.</li>
+          <li>Built strong cross-functional relationships across the product team and PMO which, combined with a steady hand resolving disputes in a fast-moving Agile environment, earned recognition as a <strong>"Rising Star"</strong> for exceptional project performance.</li>
+          <li>Used Jira to manage a high volume of tickets and parallel projects, staying disciplined about deadlines and throughput while working within Agile sprints.</li>
+          <li>Built a <strong>client behaviour and churn analysis dashboard</strong> that gave the business team a faster read on retention risk — speeding up strategic decision-making and deepening client relationships through more advanced analytics.</li>
+          <li>Gathered requirements directly from key stakeholders, including the business manager and product team, and coordinated the build and rollout of tailored dashboards — embedding data-driven decision-making more broadly across the organization.</li>
+          <li>Partnered closely with software engineers to extract and transform data from source databases, adapting comfortably to a collaborative, fast-iterating Agile development environment.</li>
+          <li>Resolved data flow issues, ran unit testing, and documented ETL and reporting processes with precision — the unglamorous rigor that keeps BI systems trustworthy.</li>
         </ul>
       </div>
     </div>
 
-    <div class="job reveal">
+    <div class="job reveal" id="job-eclerx">
       <div class="job-period">MAR 2021 — MAR 2022</div>
       <div>
         <div class="job-title">Data Analyst</div>
         <div class="job-company">eClerx · Navi Mumbai, IN</div>
+        <p class="job-context">The starting point — where the fundamentals of BI development were learned hands-on, from writing the scripts that move data to building the first dashboards that people actually relied on daily.</p>
         <ul class="job-bullets">
-          <li>Built and maintained Qlik load scripts to extract, transform, and load data from multiple source systems.</li>
-          <li>Automated data cleansing with VBA, reducing manual effort and improving data quality.</li>
+          <li>Developed and maintained Qlik load scripts to extract, transform, and load data from multiple source systems into business-ready reporting datasets.</li>
+          <li>Created Qlik Sense dashboards and reports supporting daily operational reporting and KPI tracking for the team.</li>
+          <li>Automated data cleansing and preprocessing tasks using VBA, cutting down manual effort and improving the consistency of the underlying data.</li>
+          <li>Performed data validation and report testing to ensure accuracy across all reporting datasets before they reached end users.</li>
         </ul>
       </div>
     </div>
@@ -438,25 +515,25 @@
       <div>
         <div class="skill-group-label">Languages &amp; Logic</div>
         <div class="chips">
-          <span class="chip">SQL</span><span class="chip">Python</span><span class="chip">PySpark</span><span class="chip">DAX</span><span class="chip">VBA</span>
+          <a class="chip" href="#job-exponentia">SQL</a><a class="chip" href="#project-nse-screener">Python</a><a class="chip" href="#about">PySpark</a><a class="chip" href="#project-powerbi-dashboard">DAX</a><a class="chip" href="#job-eclerx">VBA</a>
         </div>
       </div>
       <div>
         <div class="skill-group-label">BI &amp; Visualization</div>
         <div class="chips">
-          <span class="chip">Power BI</span><span class="chip">Qlik Sense</span><span class="chip">Tableau</span><span class="chip">Microsoft Fabric</span>
+          <a class="chip" href="#project-powerbi-dashboard">Power BI</a><a class="chip" href="#job-crimson">Qlik Sense</a><a class="chip" href="#certifications">Tableau</a><a class="chip" href="#job-dhl">Microsoft Fabric</a>
         </div>
       </div>
       <div>
         <div class="skill-group-label">Data Engineering</div>
         <div class="chips">
-          <span class="chip">ETL</span><span class="chip">Data Modeling</span><span class="chip">Data Warehousing</span><span class="chip">PostgreSQL</span><span class="chip">Snowflake</span>
+          <a class="chip" href="#job-exponentia">ETL</a><a class="chip" href="#job-exponentia">Data Modeling</a><span class="chip">Data Warehousing</span><a class="chip" href="#job-exponentia">PostgreSQL</a><span class="chip">Snowflake</span>
         </div>
       </div>
       <div>
         <div class="skill-group-label">Delivery</div>
         <div class="chips">
-          <span class="chip">Agile</span><span class="chip">Jira</span><span class="chip">Advanced Excel</span><span class="chip">Dashboard Development</span>
+          <a class="chip" href="#job-crimson">Agile</a><a class="chip" href="#job-crimson">Jira</a><a class="chip" href="#job-exponentia">Advanced Excel</a><a class="chip" href="#project-powerbi-dashboard">Dashboard Development</a>
         </div>
       </div>
     </div>
@@ -468,16 +545,16 @@
       <h2 class="section-title">Personal Projects</h2>
     </div>
     <div class="project-grid">
-      <div class="project-card reveal">
+      <div class="project-card reveal" id="project-nse-screener">
         <div class="project-tag">Swing Trading</div>
         <div class="project-title">NSE Stock Screener</div>
-        <p class="project-desc">A Python screener that dynamically pulls the Nifty 500 list and ranks stocks using MACD crossover and Wilder RSI(14) filters, outputting ranked results to CSV for daily swing-trade review.</p>
+        <p class="project-desc">A Python screener built for personal swing trading, dynamically pulling the full Nifty 500 universe and ranking stocks using MACD crossover and Wilder-smoothed RSI(14) filters. Built iteratively and debugged against real edge cases — including a MACD crossover boundary condition that was silently misflagging signals, and an RSI calculation that needed correcting to properly implement Wilder's smoothing method rather than a simple moving average. Outputs ranked results to CSV for daily review ahead of the trading day.</p>
         <div class="project-stack"><span>Python</span><span>Pandas</span><span>yfinance</span></div>
       </div>
-      <div class="project-card reveal">
+      <div class="project-card reveal" id="project-powerbi-dashboard">
         <div class="project-tag">Reporting</div>
         <div class="project-title">Power BI KPI Dashboard</div>
-        <p class="project-desc">An industrial-projects-style KPI dashboard built with an emphasis on clear visual hierarchy and executive readability over DAX complexity, modeled on real operational reporting layouts.</p>
+        <p class="project-desc">A supply-chain style KPI dashboard modeled on real enterprise reporting layouts, designed with a dark navy theme and conditional formatting so at-risk metrics are visible at a glance rather than buried in a table. Built to practice translating a professional BI report structure end-to-end — from data model to DAX measures to final visual polish — outside of a client engagement.</p>
         <div class="project-stack"><span>Power BI</span><span>DAX</span></div>
       </div>
     </div>
