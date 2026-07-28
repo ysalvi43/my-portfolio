@@ -4,6 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yash Salvi — Business Intelligence Engineer</title>
+<meta name="description" content="Business Intelligence Engineer with 5 years of experience across Qlik Sense, Power BI, Microsoft Fabric, SQL, and Python — currently expanding into data engineering with PySpark and Databricks.">
+
+<!-- Open Graph / link previews -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yash Salvi — Business Intelligence Engineer">
+<meta property="og:description" content="5 years across Qlik Sense, Power BI, Microsoft Fabric, SQL, and Python. Currently deepening into PySpark and Databricks.">
+<meta property="og:image" content="og-image.png">
+<meta property="og:url" content="https://yashsalvi.github.io/">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Yash Salvi — Business Intelligence Engineer">
+<meta name="twitter:description" content="5 years across Qlik Sense, Power BI, Microsoft Fabric, SQL, and Python. Currently deepening into PySpark and Databricks.">
+<meta name="twitter:image" content="og-image.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="256x256" href="favicon-256.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -71,6 +90,8 @@
   }
   nav.links a:hover{color:var(--text);}
   nav.links a:hover::after{transform:scaleX(1);transform-origin:left;}
+  nav.links a.active{color:var(--teal);}
+  nav.links a.active::after{transform:scaleX(1);transform-origin:left;background:var(--teal);}
 
   .nav-right{display:flex;align-items:center;gap:28px;}
 
@@ -126,6 +147,29 @@
   }
   .contact-row a:hover{color:var(--teal);}
   .contact-row span{color:var(--muted-2);}
+
+  .email-group{display:inline-flex;align-items:center;gap:6px;position:relative;}
+  .copy-btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:22px;height:22px;padding:0;border-radius:4px;
+    background:transparent;border:1px solid var(--panel-line);
+    color:var(--muted-2);cursor:pointer;position:relative;
+    transition:border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .copy-btn:hover{border-color:var(--teal);color:var(--teal);}
+  .copy-btn svg{width:12px;height:12px;}
+  .copy-btn .icon-check{display:none;}
+  .copy-btn.copied{border-color:var(--teal);color:var(--teal);background:rgba(79,209,197,0.1);}
+  .copy-btn.copied .icon-copy{display:none;}
+  .copy-btn.copied .icon-check{display:block;}
+  .copy-tooltip{
+    position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);
+    background:var(--teal);color:var(--ink);font-family:'Inter',sans-serif;
+    font-size:11px;font-weight:600;padding:4px 8px;border-radius:5px;
+    white-space:nowrap;opacity:0;pointer-events:none;
+    transition:opacity .18s ease, transform .18s ease;
+  }
+  .copy-btn.copied .copy-tooltip{opacity:1;transform:translateX(-50%) translateY(0);}
 
   /* KPI tile strip — the signature element */
   .kpi-strip{
@@ -183,20 +227,47 @@
     .kpi-value{font-size:21px;}
   }
 
+  /* Hamburger — hidden on desktop by default */
+  .hamburger{
+    display:none;
+    width:36px;height:36px;flex-shrink:0;
+    align-items:center;justify-content:center;
+    background:transparent;border:1px solid var(--panel-line);border-radius:6px;
+    cursor:pointer;position:relative;
+  }
+  .hamburger span{
+    position:absolute;left:9px;right:9px;height:1.5px;background:var(--text);
+    transition:transform .25s ease, opacity .2s ease;
+  }
+  .hamburger span:nth-child(1){top:13px;}
+  .hamburger span:nth-child(2){top:18px;}
+  .hamburger span:nth-child(3){top:23px;}
+  .hamburger.open span:nth-child(1){transform:translateY(5px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-5px) rotate(-45deg);}
+
   @media (max-width:480px){
-    .navrow{padding:14px 0 14px 20px;gap:12px;}
-    .nav-right{gap:14px;min-width:0;flex:1;}
-    nav.links{
-      overflow-x:auto;flex-wrap:nowrap;gap:16px;
-      padding-right:12px;min-width:0;
-      -ms-overflow-style:none;scrollbar-width:none;
-      mask-image:linear-gradient(90deg, #000 85%, transparent 100%);
-      -webkit-mask-image:linear-gradient(90deg, #000 85%, transparent 100%);
-    }
-    nav.links::-webkit-scrollbar{display:none;}
-    nav.links a{white-space:nowrap;flex:0 0 auto;}
-    .resume-btn{padding:8px 10px;margin-right:20px;}
+    .navrow{padding:14px 20px;}
+    .nav-right{gap:12px;}
+    .hamburger{display:flex;order:2;}
+    .resume-btn{padding:8px 10px;order:1;}
     .resume-btn span{display:none;}
+
+    nav.links{
+      position:absolute;top:100%;left:0;right:0;
+      flex-direction:column;align-items:stretch;gap:0;
+      background:var(--panel);border-bottom:1px solid var(--panel-line);
+      max-height:0;overflow:hidden;
+      opacity:0;pointer-events:none;
+      transition:max-height .3s ease, opacity .2s ease;
+    }
+    nav.links.open{max-height:280px;opacity:1;pointer-events:auto;}
+    nav.links a{
+      padding:16px 20px;border-bottom:1px solid var(--panel-line);
+      font-size:15px;
+    }
+    nav.links a::after{display:none;}
+    nav.links a.active{background:rgba(79,209,197,0.06);}
   }
 
   @media (max-width:400px){
@@ -385,6 +456,9 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
         <span>Resume</span>
       </a>
+      <button class="hamburger" type="button" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
@@ -396,7 +470,14 @@
     <h1 class="name">Yash Salvi</h1>
     <p class="role-line">Business Intelligence Engineer building <strong>reliable, scalable reporting</strong> across Qlik Sense, Power BI, and Microsoft Fabric — currently deepening into <strong>data engineering</strong>.</p>
     <div class="contact-row">
-      <a href="mailto:ysalvi43@gmail.com">ysalvi43@gmail.com</a>
+      <span class="email-group">
+        <a href="mailto:ysalvi43@gmail.com">ysalvi43@gmail.com</a>
+        <button class="copy-btn" type="button" data-email="ysalvi43@gmail.com" aria-label="Copy email address">
+          <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 01-1-1V4a1 1 0 011-1h10a1 1 0 011 1v1"/></svg>
+          <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          <span class="copy-tooltip">Copied!</span>
+        </button>
+      </span>
       <span>/</span>
       <a href="tel:+919326581120">+91 93265 81120</a>
       <span>/</span>
@@ -463,7 +544,7 @@
         <div class="job-company">Exponentia AI · Mumbai, IN</div>
         <p class="job-context">This role is where performance and reliability at scale became the core problem to solve — reporting pipelines that had to stay fast and accurate as record counts climbed into the millions.</p>
         <ul class="job-bullets">
-          <li>Optimized Qlik Sense data models and SQL-based ETL workflows — reworking load logic and tuning queries — to <strong>cut processing time by 55%</strong>, enabling near real-time analysis of 10M+ records while automated validation checks caught data issues before they ever reached a dashboard.</li>
+          <li>Optimized Qlik Sense data models and SQL-based ETL workflows — reworking load logic and tuning queries — to <strong>cut processing time by 55%</strong>, enabling near real-time analysis of 10M+ records. A key part of that shift was moving away from full-table reloads to <strong>incremental loading</strong>, implementing both Slowly Changing Dimension (SCD) Type 2 and Type 3 patterns depending on whether a table needed full historical tracking or just the most recent prior state — so the pipeline stopped reprocessing data that hadn't actually changed, with automated validation checks catching issues before they ever reached a dashboard.</li>
           <li>Architected a <strong>reusable 3-tier ETL framework</strong> separating ingestion, transformation, and presentation layers — standardizing how BI projects were built across the team and improving scalability, governance, and cross-project reusability.</li>
           <li>Worked directly with Finance, HR, and Operations leadership to deliver executive dashboards, including a strategic reporting solution that was adopted by the Managing Director for day-to-day decision-making.</li>
           <li>Built scalable ETL pipelines that unified Excel, PostgreSQL, and Databricks sources into a single reporting layer, closing the gap between disconnected data owners and giving stakeholders one consistent version of the numbers.</li>
@@ -484,7 +565,7 @@
           <li>Built a <strong>client behaviour and churn analysis dashboard</strong> that gave the business team a faster read on retention risk — speeding up strategic decision-making and deepening client relationships through more advanced analytics.</li>
           <li>Gathered requirements directly from key stakeholders, including the business manager and product team, and coordinated the build and rollout of tailored dashboards — embedding data-driven decision-making more broadly across the organization.</li>
           <li>Partnered closely with software engineers to extract and transform data from source databases, adapting comfortably to a collaborative, fast-iterating Agile development environment.</li>
-          <li>Resolved data flow issues, ran unit testing, and documented ETL and reporting processes with precision — the unglamorous rigor that keeps BI systems trustworthy.</li>
+          <li>Contributed to backend standardization efforts by introducing <strong>incremental load logic</strong> into reporting pipelines, so daily refreshes only touched new or changed records instead of reprocessing entire datasets — resolved data flow issues, ran unit testing, and documented ETL and reporting processes with precision along the way, the unglamorous rigor that keeps BI systems trustworthy.</li>
         </ul>
       </div>
     </div>
@@ -689,6 +770,84 @@
         }
       }
       requestAnimationFrame(step);
+    });
+  }
+
+  // Copy email button
+  var copyBtn = document.querySelector('.copy-btn');
+  if(copyBtn){
+    copyBtn.addEventListener('click', function(){
+      var email = copyBtn.getAttribute('data-email');
+      var done = function(){
+        copyBtn.classList.add('copied');
+        clearTimeout(copyBtn._t);
+        copyBtn._t = setTimeout(function(){ copyBtn.classList.remove('copied'); }, 1600);
+      };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(email).then(done).catch(function(){
+          fallbackCopy(email); done();
+        });
+      } else {
+        fallbackCopy(email); done();
+      }
+    });
+  }
+  function fallbackCopy(text){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  // Active nav state — scroll-spy
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('nav.links a'));
+  var navSections = navLinks.map(function(a){
+    return document.querySelector(a.getAttribute('href'));
+  }).filter(Boolean);
+
+  if(navSections.length){
+    var setActive = function(id){
+      navLinks.forEach(function(a){
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    };
+    var navObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          setActive(entry.target.id);
+        }
+      });
+    }, { threshold: 0, rootMargin: '-45% 0px -50% 0px' });
+
+    navSections.forEach(function(sec){ navObserver.observe(sec); });
+  }
+
+  // Hamburger menu (mobile only)
+  var hamburger = document.querySelector('.hamburger');
+  var mobileNav = document.querySelector('nav.links');
+  if(hamburger && mobileNav){
+    var closeMenu = function(){
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    };
+    hamburger.addEventListener('click', function(){
+      var isOpen = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+    });
+    mobileNav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('click', function(e){
+      if(!mobileNav.classList.contains('open')) return;
+      if(!mobileNav.contains(e.target) && !hamburger.contains(e.target)){
+        closeMenu();
+      }
     });
   }
 })();
